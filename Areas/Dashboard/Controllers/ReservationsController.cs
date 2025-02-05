@@ -19,7 +19,7 @@ namespace OrderingSystem.Areas.Dashboard.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Index()
         {
             return View();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderingSystem.Areas.Dashboard.Models.ViewModels;
 using OrderingSystem.Models.DbContext;
@@ -7,6 +8,7 @@ using OrderingSystem.Models.Enums;
 namespace OrderingSystem.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Admin")]
     public class TableController : Controller
     {
         private readonly OrderDbContext dbContext;

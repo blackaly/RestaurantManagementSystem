@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OrderingSystem.Models.DbContext;
 using OrderingSystem.Models.DbModels;
 using OrderingSystemDashboard.Models;
@@ -8,6 +9,7 @@ using OrderingSystemDashboard.Models.ViewModels.Shared;
 namespace OrderingSystem.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         OrderDbContext context;
