@@ -1,0 +1,22 @@
+﻿@using OrderingSystemDashboard.Models.ViewModels;
+@model ShowMenuItemViewModel
+
+@{
+    ViewBag.Title = "Delete Menu Item";
+}
+
+<h2>Delete Item</h2>
+<p>Are you sure you want to delete this?</p>
+
+<div>
+    <h4>Menu Id: @Model.MenuId</h4>
+    <h4>Menu Item Name: @Model.MenuName</h4>
+    <h4>Menu Item Description: @Model.Description</h4>
+
+    <form asp-action="DeleteItemMenu" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @Html.HiddenFor(model => model.MenuId)
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a href="@Url.Action("ShowMenuItems")" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OrderingSystemDashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OrderingSystemDashboard.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="Dashboard" asp-controller="Home" asp-action="Index">OrderingSystemDashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Menu
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Menu" asp-action="AddMenu">Add new Menu</a>
+                                <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Menu" asp-action="AddMenuItems">Add new Menu Items</a>
+                                <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Menu" asp-action="ShowMenuItems">Show Menu Items</a>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Category" asp-action="Index">Category</a>
+                        </li>
+                        @if(User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    User
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="User" asp-action="Register">Add New User</a>
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="User" asp-action="ShowAllUsers">Show All Users</a>
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Role" asp-action="CreateRole">Add New Role</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Table
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Table" asp-action="Add">Add New Table</a>
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Table" asp-action="Index">Show All Tables</a>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reservations
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Reservations" asp-action="Add">Pending Reservations</a>
+                                    <a class="nav-link text-dark" asp-area="Dashboard" asp-controller="Reservations" asp-action="Index">All Reservations</a>
+                                </ul>
+                            </li>
+                        }
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="Dashboard" asp-action="Login" asp-controller="User">Login</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="Dashboard" asp-action="Signout" asp-controller="User">Signout</a></li>
+                        }
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - OrderingSystemDashboard - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

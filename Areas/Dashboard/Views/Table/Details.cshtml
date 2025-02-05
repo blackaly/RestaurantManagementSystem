@@ -1,0 +1,20 @@
+﻿@using OrderingSystem.Areas.Dashboard.Models.ViewModels;
+@model TableViewModel
+
+@{
+    ViewBag.Title = "Details Table";
+}
+
+<h2>Details Table</h2>
+
+<div>
+    <h4>Table Number: @Model.TableNumber</h4>
+    <h4>Table Capacity: @Model.SeatingCapacity</h4>
+
+    <form asp-action="DeleteTable" method="get">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @Html.HiddenFor(model => model.TableNumber)
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

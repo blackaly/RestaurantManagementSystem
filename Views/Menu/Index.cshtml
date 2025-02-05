@@ -1,0 +1,63 @@
+﻿@using OrderingSystem.Models.ViewModel
+@model List<ShowMenu>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+
+<main>
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb-area d-flex align-items-center" style="background-image: url(img/bg/test-bg.png);background-position: center; background-repeat: no-repeat;background-size: cover;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+                    <div class="breadcrumb-wrap text-center">
+                        <div class="breadcrumb-title mt-115 mb-30">
+                            <h2>Our Menu</h2>
+                        </div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Our Menu</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+    <!-- Meal-area-start -->
+    <section class="meal-select-section pt-110 pb-120">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="populer-meal">
+                        <ul>
+                            @foreach(var item in Model)
+                            {
+                            <li>
+                                    <a asp-action="MenuItems" asp-controller="Menu" asp-route-id="@item.Id" style="display: inline-block;color: black;background-color: yellow; width:50%; padding-inline: 2px; padding-block: 1rem; text-align: center;">@item.Name</a>
+                            </li>
+                            }
+                           
+                          
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+           
+            <!--
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <img src="/img/meal/banner.png" alt="banner" class="img pr-10 pl-10">
+                </div>
+            </div>
+             -->
+        </div>
+    </section>
+    <!-- Meal-area-end -->
+
+</main>

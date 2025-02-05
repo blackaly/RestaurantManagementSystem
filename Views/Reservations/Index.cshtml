@@ -1,0 +1,134 @@
+﻿@using OrderingSystem.Models.ViewModel
+@model ReservationViewModel
+
+
+
+<form id="reservationForm" class="reservation-form">
+    <section class="form-section">
+        <h2>Reservation Details</h2>
+        <div class="form-group">
+            <label asp-for="ReservationDate">Date:</label>
+            <input asp-for="ReservationDate" type="date" id="date" required>
+            <span asp-validation-for="ReservationDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReservationTime">Time:</label>
+            <select asp-for="ReservationTime" id="time" required>
+                <option value="">Select time</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="17:30">5:30 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="18:30">6:30 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="19:30">7:30 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="20:30">8:30 PM</option>
+                <option value="21:00">9:00 PM</option>
+            </select>
+            <span asp-validation-for="ReservationTime" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="NumberOfPeople" >Party Size:</label>
+            <select asp-for="NumberOfPeople" id="partySize" required>
+                <option value="">Select size</option>
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
+                <option value="6">6 people</option>
+                <option value="7">7 people</option>
+                <option value="8">8 people</option>
+                <option value="9">9 people</option>
+                <option value="10">10 people</option>
+            </select>
+            <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <h2>Guest Information</h2>
+        <div class="form-group">
+            <label asp-for="GuestName">Full Name:</label>
+            <input asp-for="GuestName" type="text" id="name" required>
+            <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Phone Number:</label>
+            <input asp-for="PhoneNumber" type="tel" id="phone" title="Please enter a valid 11-digit phone number" required>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email:</label>
+            <input asp-for="Email" type="email" id="email" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <h2>Special Requests</h2>
+        <div class="form-group">
+            <label asp-for="Comment">Special Requests (Optional):</label>
+            <textarea asp-for="Comment" id="requests" rows="4"></textarea>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="form-group checkbox">
+            <input type="checkbox" id="agreement" required>
+            <label for="agreement">I agree to the restaurant's cancellation policy</label>
+        </div>
+    </section>
+
+    <button type="submit" class="submit-btn">Reserve Now</button>
+
+</form>
+
+    <div style="display: none;" id="card" class="success-card">
+        <div class="success-icon">✓</div>
+        <h2>Success!</h2>
+        <p>Your reservation has been confirmed.</p>
+        <p class="details">Thank you for choosing our service.</p>
+    </div>
+
+
+@section Scripts {
+            <script>
+                 $(document).ready(function () {
+            $("#reservationForm").submit(function (event) {
+                event.preventDefault();
+
+                var formData = {
+                    ReservationDate: $("#date").val(),
+                    ReservationTime: $("#time").val(),
+                    NumberOfPeople: $("#partySize").val(),
+                    GuestName: $("#name").val(),
+                    PhoneNumber: $("#phone").val(),
+                    Email: $("#email").val(),
+                    Comment: $("#requests").val(),
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Reservations/Add/",
+                    data: JSON.stringify(formData),
+                   contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+                            $("#reservationForm").css("display", "none");
+                            $("#card").css("display", "block");
+                            $("#reservationForm")[0].reset();
+                        } else {
+                            alert("Failed to make a reservation. Please try again.");
+                        }
+                    },
+                    error: function () {
+                        alert("An error occurred while processing your request. Please try again.");
+                    }
+                });
+            });
+        });
+            </script>
+}

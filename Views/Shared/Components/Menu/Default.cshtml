@@ -1,0 +1,8 @@
+﻿@using OrderingSystem.Models.DbModels;
+@model List<Menu>;
+
+@foreach (var menu in Model)
+{
+    <li><a asp-action="MenuItems" asp-controller="Menu" asp-route-id="@menu.Id">@menu.Name</a></li>
+
+}
