@@ -1,0 +1,51 @@
+﻿@using OrderingSystem.Areas.Dashboard.Models.ViewModels.Shared
+@model List<ReservationViewModel>
+
+@{
+    ViewData["Title"] = "Reservation";
+}
+
+
+<h1>Pendding Reservation</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Rows</th>
+            <th scope="col">Reservation Date</th>
+            <th scope="col">Reservation Time</th>
+            <th scope="col">Number of People</th>
+            <th scope="col">Guest Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            @for (int i = 0; i < Model.Count; ++i)
+            {
+                <tr>
+                    <th scope="row">@(i + 1)</th>
+                    <td>@Model[i].ReservationDate</td>
+                    <td>@Model[i].ReservationTime</td>
+                    <td>@Model[i].NumberOfPeople</td>
+                    <td>@Model[i].GuestName</td>
+                    <td>@Model[i].PhoneNumber</td>
+                    <td>@Model[i].Email</td>
+                    <td>
+                        <a class="btn btn-danger" asp-area="Dashboard" asp-action="Delete" asp-controller="Reservations" asp-route-id="@Model[i].id">Reject</a>
+                        <a class="btn btn-success" asp-area="Dashboard" asp-action="Update" asp-controller="Reservations" asp-route-id="@Model[i].id">Accept & Assign Table</a>
+                        <a class="btn btn-primary" asp-area="Dashboard" asp-action="Details" asp-controller="Reservations" asp-route-id="@Model[i].id">Details</a>
+                        <p>There is @Model[i].NumberOfTablesInSameDateTime With the same date</p>
+                    </td>
+                    
+                </tr>
+                
+            }
+        }
+
+    </tbody>
+</table>
