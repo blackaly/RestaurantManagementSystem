@@ -36,3 +36,4 @@ Users can provide feedback on their orders and restaurant services.
 - Adding Restaurant book seat feature.
 - Applying Unit Testing in the project.
 - Dokerize it.
+- Adding Paymob service
