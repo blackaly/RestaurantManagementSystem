@@ -60,7 +60,7 @@
                                                 <hr>
                                             </div>
                                             <div class="meal-price">
-                                                <a href="shop-details.html">@item.Price.ToString("C")</a>
+                                                <a asp-action="Index" asp-controller="ItemDetails" asp-route-id="@item.Id" >@item.Price.ToString("C")</a>
                                             </div>
                                         </div>
                                     </li>

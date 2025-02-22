@@ -40,8 +40,8 @@
                         <div class="col-xl-3 col-lg-3 text-right d-none d-lg-block">
                             <div class="cart-top">
                                 <ul>
-                                    <li><a href="#"><i class="far fa-shopping-cart"></i></a></li>
-                                    <li><a href="#" class="menu-tigger"><i class="fal fa-bars"></i></a></li>
+                                    <li><a asp-action="Index" asp-controller="ShoppingCart"><i class="far fa-shopping-cart"></i></a></li>
+                                    <li><a class="menu-tigger"><i class="fal fa-bars"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -226,3 +226,20 @@
     @RenderSection("Scripts", false);
 </body>
 </html>
+
+        <script>
+             
+           window.addEventListener("DOMContentLoaded", () => {
+               updateCart();
+           })
+        function updateCart()
+            {
+                    const liNumberOfItems = document.querySelector(".fa-shopping-cart");
+
+                let numberOfItems = 0;
+        if (localStorage.getItem('shopping-cart')) {
+            numberOfItems = JSON.parse(localStorage.getItem("shopping-cart")).length;
+        }
+    liNumberOfItems.innerHTML = `<span style="color: white; padding-left: 5px;">${numberOfItems}</span>`;
+            }
+        </script>

@@ -8,7 +8,7 @@ namespace OrderingSystem.Controllers
 {
     public class MenuController : Controller
     {
-        OrderDbContext context;
+        private OrderDbContext context;
         public MenuController(OrderDbContext context)
         {
             this.context = context;
