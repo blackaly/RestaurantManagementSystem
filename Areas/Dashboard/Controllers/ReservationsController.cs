@@ -45,7 +45,52 @@ namespace OrderingSystem.Areas.Dashboard.Controllers
             return View(pendding);
         }
 
-        
+        [HttpGet]
+        public IActionResult AssignTable(int id)
+        {
+            var data = dbContext.Reservations.Find(id);
+            if(data != null)
+            {
+
+                return View(new ReservationViewModel
+                {
+                    id = id,
+                    GuestName = data.GuestName,
+                    Email = data.Email,
+                    NumberOfPeople = data.NumberOfPeople,
+                    PhoneNumber = data.PhoneNumber,
+                    ReservationDate = $"{data.ReservationDate.Day}/{data.ReservationDate.Month}/{data.ReservationDate.Year}",
+                    ReservationTime = $"{data.ReservationDate.Hour}:{data.ReservationDate.Minute}",
+
+                });
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AssignTablePost(int id)
+        {
+            var data = dbContext.Reservations.Find(id);
+            if (data != null)
+            {
+
+                return View(new ReservationViewModel
+                {
+                    id = id,
+                    GuestName = data.GuestName,
+                    Email = data.Email,
+                    NumberOfPeople = data.NumberOfPeople,
+                    PhoneNumber = data.PhoneNumber,
+                    ReservationDate = $"{data.ReservationDate.Day}/{data.ReservationDate.Month}/{data.ReservationDate.Year}",
+                    ReservationTime = $"{data.ReservationDate.Hour}:{data.ReservationDate.Minute}",
+
+                });
+            }
+
+            return View();
+        }
+
         public IActionResult Details(int id)
         {
             return View();

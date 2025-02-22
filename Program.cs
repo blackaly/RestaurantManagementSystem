@@ -5,6 +5,7 @@ using OrderingSystem.Models.DbContext;
 using OrderingSystem.Models.DbModels;
 using OrderingSystem.Services.Menu.Implementation;
 using OrderingSystem.Services.MenuService.Interfaces;
+using Stripe;
 
 namespace OrderingSystem
 {
@@ -18,6 +19,11 @@ namespace OrderingSystem
             {
                 options.ViewLocationFormats.Add("/{0}.cshtml");
             });
+
+            // Stripe
+            StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
@@ -28,6 +34,7 @@ namespace OrderingSystem
                 option.Password.RequireUppercase = false;
             })
                 .AddEntityFrameworkStores<OrderDbContext>();
+
             builder.Services.AddDbContext<OrderDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Order"));

@@ -1,0 +1,24 @@
+﻿@using OrderingSystem.Areas.Dashboard.Models.ViewModels.Shared
+@model ReservationViewModel
+
+<h2>Id: @Model.id</h2>
+<h2>Guest Name: @Model.GuestName</h2>
+<h2>Number of People: @Model.NumberOfPeople</h2>
+<h2>Phone Number: @Model.PhoneNumber</h2>
+<h2>Reservation Date: @Model.ReservationDate</h2>
+<h2>Reservation Time: @Model.ReservationTime</h2>
+<hr />
+
+<h1>Assign a table for <ins>@Model.GuestName</ins></h1>
+
+<form action="AssignTablePost" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="id" class="control-label"></label>
+        <input asp-for="id" class="form-control" />
+        <span asp-validation-for="id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
