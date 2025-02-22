@@ -1,6 +1,6 @@
 # ERD
 
-
+![Alt text](https://github.com/blackaly/RestaurantManagementSystem/blob/master/rdmeimg/erd.png "a Res ERD")
 
 # Overview
 The Restaurant Management System (RMS) is a web-based application developed using ASP.NET Core MVC. It is designed to streamline restaurant operations by enabling customers to place orders, make reservations, and provide feedback, while restaurant administrators manage menus, tables, orders, promotions, and staff activities.
