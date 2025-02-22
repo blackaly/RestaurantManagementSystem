@@ -1,3 +1,3 @@
 ## Future Update:-
-- Make the code architecture more better
+- Make the project architecture more better
 - Adding Restaurant book seat feature
